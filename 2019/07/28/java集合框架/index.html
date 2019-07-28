@@ -149,7 +149,8 @@
 </ul>
 <h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><blockquote>
 <p>有序可重复Collection集合 可以拥有多个null元素</p>
-<pre><code>常用的方法：</code></pre></blockquote>
+<pre><code class="常用的方法："></code></pre>
+</blockquote>
 <ul>
 <li>boolean add(E e)  添加元素到列表的尾部</li>
 <li>void add(int index, E element)  向指定位置添加元素</li>
@@ -158,8 +159,7 @@
 </ul>
 <p>常用子类：</p>
 <ul>
-<li>ArrayList:<br><font color="#FF0000">遍历集合的3中方法</font><pre><code>List&lt;Integer&gt; L1 = new ArrayList&lt;&gt;();
-L1.add(1);
+<li>ArrayList:<br><font color="#FF0000">遍历集合的3中方法</font><pre><code class="List&lt;Integer&gt;">L1.add(1);
 L1.add(2);
 L1.add(3);
 L1.add(4);
@@ -179,60 +179,87 @@ System.out.println(&quot;------Iterator-----&quot;);
 Iterator&lt;Integer&gt; it = L1.iterator();
 while(it.hasNext()){
   System.out.print(it.next());
-}</code></pre><pre><code>public ArrayList() {
-  this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+}</code></pre>
+<pre><code class="public">  this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
 }
 transient Object[] elementData; // non-private to simplify nested class access
-private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};</code></pre>由构造方法中的两个参数可以看出，ArrayList底层是由数组实现的，默认是创建一个长度为0的Objcet数组<br><font color="#A52A2A">优点：查找数据方便，可以通过索引进行访问<br>缺点：操作数据麻烦，当要删除某个元素时，要移动它之后的所有元素</font></li>
+private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};</code></pre>
+由构造方法中的两个参数可以看出，ArrayList底层是由数组实现的，默认是创建一个长度为0的Objcet数组<br><font color="#A52A2A">优点：查找数据方便，可以通过索引进行访问<br>缺点：操作数据麻烦，当要删除某个元素时，要移动它之后的所有元素</font></li>
 </ul>
 <hr>
 <ul>
-<li>LinkedList<pre><code></code></pre></li>
+<li>LinkedList<pre><code class="里面的变量">transient Node&lt;E&gt; first;
+transient Node&lt;E&gt; last;
+</code></pre>
+</li>
 </ul>
-<p>里面的变量<br>transient Node<e> first;<br>transient Node<e> last;</e></e></p>
 <p>transient:关键字 当序列化的时候忽略这个关键字修饰的变量 不能放在方法体类，只能用来修饰成员变量或者类变量</p>
 <p>private static class Node<e> {<br>E item;<br>Node<e> next;<br>Node<e> prev;</e></e></e></p>
 <p>Node(Node<e> prev, E element, Node<e> next) {<br>        this.item = element;<br>        this.next = next;<br>        this.prev = prev;<br>    }<br>}</e></e></p>
-<pre><code>LinkedList是对链表进行操作，底层是链表实现，还实现了Deque 可以进行栈对应的操作</code></pre><p>pop() 将栈顶元素出栈并移除该元素<br>push(E) 入栈，采用的是头插法<br>poll()  将栈顶元素出栈但不移除元素<br>↑ 方法是ArrayList没有的方法</p>
-<pre><code>&lt;font color=    #A52A2A&gt;优点：插入，删除元素快，只需要删除对应的结点，不需要移动元素
-缺点：查找元素慢，因为需要从头结点遍历  可以采用双向链表优化&lt;/font&gt;
+<pre><code>LinkedList是对链表进行操作，底层是链表实现，还实现了Deque 可以进行栈对应的操作
 
------------
+--------
 
-#### Set
-&gt; 无序不可能重复的Collection集合 最多只能拥有一个null 元素 
-&gt; 底层是Map存放key,value键值对，因为Key不能重复，所以set不能存放重复的元素
+```pop() 将栈顶元素出栈并移除该元素
+push(E) 入栈，采用的是头插法
+poll()  将栈顶元素出栈但不移除元素
+↑ 方法是ArrayList没有的方法</code></pre><p><font color="#A52A2A">优点：插入，删除元素快，只需要删除对应的结点，不需要移动元素<br>缺点：查找元素慢，因为需要从头结点遍历  可以采用双向链表优化</font></p>
+<hr>
+<h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><blockquote>
+<p>无序不可能重复的Collection集合 最多只能拥有一个null 元素<br>底层是Map存放key,value键值对，因为Key不能重复，所以set不能存放重复的元素</p>
+</blockquote>
+<p>常用方法(Set接口中的方法):</p>
+<pre><code class="add(E">contains(Object o) : 查询是否集合中是否包含该元素
+isEmpty() : 为空返回true
+iterator() : Set集合的迭代器
+remove(Object o) : 移除某个元素
+size() : 集合的大小</code></pre>
+<p><font color="#FF0000">常用子类</font></p>
+<ul>
+<li>HashSet<blockquote>
+<p>由哈希表（实际上是一个 HashMap 实例）支持。它不保证 set 的迭代顺序；特别是它不保证该顺序恒久不变。此类允许使用 null 元素。<strong>线程不同步</strong></p>
+</blockquote>
+</li>
+</ul>
+<p>剖析源码：</p>
+<pre><code class="private">private static final Object PRESENT = new Object();
 
-常用方法(Set接口中的方法):</code></pre><p>add(E e) : 添加一个set集合中没有的元素  添加成功返回true<br>contains(Object o) : 查询是否集合中是否包含该元素<br>isEmpty() : 为空返回true<br>iterator() : Set集合的迭代器<br>remove(Object o) : 移除某个元素<br>size() : 集合的大小</p>
-<pre><code>&lt;font color=    #FF0000&gt;常用子类&lt;/font&gt;
-* HashSet
-&gt; 由哈希表（实际上是一个 HashMap 实例）支持。它不保证 set 的迭代顺序；特别是它不保证该顺序恒久不变。此类允许使用 null 元素。**线程不同步**
 
-剖析源码：</code></pre><p>private transient HashMap&lt;E,Object&gt; map;<br>private static final Object PRESENT = new Object();</p>
-<p>public HashSet() {<br>    map = new HashMap&lt;&gt;();<br>}</p>
-<p>public boolean add(E e) {<br>    return map.put(e, PRESENT)==null;<br>}</p>
-<p>public boolean remove(Object o) {<br>     return map.remove(o)==PRESENT;<br>}</p>
-<pre><code>&lt;font color=#000FFF&gt;
+public HashSet() {
+    map = new HashMap&lt;&gt;();
+}
+
+
+public boolean add(E e) {
+    return map.put(e, PRESENT)==null;
+}
+
+public boolean remove(Object o) {
+     return map.remove(o)==PRESENT;
+}
+
+</code></pre>
+<font color="#000FFF">
 总结：
 1.hashSet底层实现是 hashmap  对set的一切操作实质都是在操作map 
 2.之所以set存放的元素是不重复的，从源码可以知道 当向set中add一个元素时，是在向map中put一个键值对，key 就是参数 e  value 是一个固定的object对象 所有的value都是一个值。而map中 key又是唯一的，当有相同的key 被put的时候，会覆盖掉之前的key 。所以当add一个已经存在的元素时，map.put()返回的是旧的value值。
 3.remove同理。因为value值都是固定的Object 且是final修饰的，不会增加额外的内存开销。
-&lt;/font&gt;
+</font>
 
-* LinkedHashSet
-&gt; 是HashSet的子类，但是维护了一个双向链表，所以add remove等操作更高效
+<ul>
+<li>LinkedHashSet<blockquote>
+<p>是HashSet的子类，但是维护了一个双向链表，所以add remove等操作更高效</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li>TreeSet<blockquote>
+<p>基于 TreeMap 的 NavigableSet 实现。使用元素的自然顺序对元素进行排序，或者根据创建 set 时提供的 Comparator 进行排序，具体取决于使用的构造方法。 </p>
+</blockquote>
+</li>
+</ul>
 
---------
-* TreeSet
-&gt; 基于 TreeMap 的 NavigableSet 实现。使用元素的自然顺序对元素进行排序，或者根据创建 set 时提供的 Comparator 进行排序，具体取决于使用的构造方法。 
-
-
-
-
-
-
-
-</code></pre>
             
         </section>
         <footer class="blog-post-page-tags">
