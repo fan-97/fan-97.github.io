@@ -149,17 +149,17 @@
 </ul>
 <h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><blockquote>
 <p>有序可重复Collection集合 可以拥有多个null元素</p>
-<pre><code class="常用的方法："></code></pre>
 </blockquote>
+<pre><code>常用的方法：
+
+  boolean add(E e)  添加元素到列表的尾部
+  void add(int index, E element)  向指定位置添加元素
+  E get(int index)  返回列表指定位置的元素
+  E remove(int index)  移除指定位置的元素
+</code></pre><p>常用子类：</p>
 <ul>
-<li>boolean add(E e)  添加元素到列表的尾部</li>
-<li>void add(int index, E element)  向指定位置添加元素</li>
-<li>E get(int index)  返回列表指定位置的元素</li>
-<li>E remove(int index)  移除指定位置的元素<pre><code></code></pre></li>
-</ul>
-<p>常用子类：</p>
-<ul>
-<li>ArrayList:<br><font color="#FF0000">遍历集合的3中方法</font><pre><code class="List&lt;Integer&gt;">L1.add(1);
+<li>ArrayList:<br><font color="#FF0000">遍历集合的3中方法</font><pre><code>List&lt;Integer&gt; L1 = new ArrayList&lt;&gt;();
+L1.add(1);
 L1.add(2);
 L1.add(3);
 L1.add(4);
@@ -179,31 +179,42 @@ System.out.println(&quot;------Iterator-----&quot;);
 Iterator&lt;Integer&gt; it = L1.iterator();
 while(it.hasNext()){
   System.out.print(it.next());
-}</code></pre>
-<pre><code class="public">  this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+}
+public ArrayList() {
+  this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
 }
 transient Object[] elementData; // non-private to simplify nested class access
-private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};</code></pre>
-由构造方法中的两个参数可以看出，ArrayList底层是由数组实现的，默认是创建一个长度为0的Objcet数组<br><font color="#A52A2A">优点：查找数据方便，可以通过索引进行访问<br>缺点：操作数据麻烦，当要删除某个元素时，要移动它之后的所有元素</font></li>
+private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};</code></pre></li>
 </ul>
-<hr>
+<p>由构造方法中的两个参数可以看出，ArrayList底层是由数组实现的，默认是创建一个长度为0的Objcet数组<br><font color="#A52A2A">优点：查找数据方便，可以通过索引进行访问<br>缺点：操作数据麻烦，当要删除某个元素时，要移动它之后的所有元素</font></p>
 <ul>
-<li>LinkedList<pre><code class="里面的变量">transient Node&lt;E&gt; first;
-transient Node&lt;E&gt; last;
-</code></pre>
-</li>
+<li>LinkedList</li>
 </ul>
-<p>transient:关键字 当序列化的时候忽略这个关键字修饰的变量 不能放在方法体类，只能用来修饰成员变量或者类变量</p>
-<p>private static class Node<e> {<br>E item;<br>Node<e> next;<br>Node<e> prev;</e></e></e></p>
-<p>Node(Node<e> prev, E element, Node<e> next) {<br>        this.item = element;<br>        this.next = next;<br>        this.prev = prev;<br>    }<br>}</e></e></p>
-<pre><code>LinkedList是对链表进行操作，底层是链表实现，还实现了Deque 可以进行栈对应的操作
+<pre><code>
 
---------
+里面的变量
+transient Node&lt;E&gt; first;
+transient Node&lt;E&gt; last;
+transient:关键字 当序列化的时候忽略这个关键字修饰的变量 不能放在方法体类
+只能用来修饰成员变量或者类变量
 
-```pop() 将栈顶元素出栈并移除该元素
-push(E) 入栈，采用的是头插法
+private static class Node&lt;E&gt; {
+E item;
+Node&lt;E&gt; next;
+Node&lt;E&gt; prev;
+
+Node(Node&lt;E&gt; prev, E element, Node&lt;E&gt; next) {
+        this.item = element;
+        this.next = next;
+        this.prev = prev;
+    }
+}
+</code></pre><p>LinkedList是对链表进行操作，底层是链表实现，还实现了Deque 可以进行栈对应的操作</p>
+<hr>
+<pre><code class="pop()">push(E) 入栈，采用的是头插法
 poll()  将栈顶元素出栈但不移除元素
-↑ 方法是ArrayList没有的方法</code></pre><p><font color="#A52A2A">优点：插入，删除元素快，只需要删除对应的结点，不需要移动元素<br>缺点：查找元素慢，因为需要从头结点遍历  可以采用双向链表优化</font></p>
+↑ 方法是ArrayList没有的方法</code></pre>
+<p><font color="#A52A2A">优点：插入，删除元素快，只需要删除对应的结点，不需要移动元素<br>缺点：查找元素慢，因为需要从头结点遍历  可以采用双向链表优化</font></p>
 <hr>
 <h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><blockquote>
 <p>无序不可能重复的Collection集合 最多只能拥有一个null 元素<br>底层是Map存放key,value键值对，因为Key不能重复，所以set不能存放重复的元素</p>
@@ -278,7 +289,7 @@ public boolean remove(Object o) {
     	
     	
 		
-			<a href="/2019/07/28/通过源码分析ArrayList扩容机制/" class="blog-post-page-readmore-prev" data-toggle="tooltip" data-placement="top" title="ArrayList 扩容机制">上一篇</a>
+			<a href="/2019/07/28/java基础加强（一）  通过源码分析ArrayList扩容机制/" class="blog-post-page-readmore-prev" data-toggle="tooltip" data-placement="top" title="java基础加强（一）  通过源码分析ArrayList扩容机制">上一篇</a>
 		
 
 		
@@ -444,7 +455,7 @@ public boolean remove(Object o) {
                     <span class="blog-sidebar-count-span">文章</span>
                 </div>
                 <div class="blog-sidebar-count-right">
-                    <p class="blog-sidebar-count-p">7</p>
+                    <p class="blog-sidebar-count-p">8</p>
                     <span class="blog-sidebar-count-span">标签</span>
                 </div>
                 <div style="clear: both;"></div>
@@ -466,7 +477,7 @@ public boolean remove(Object o) {
                     
                       <li class="list-group-item justify-content-between">
                           <a href="/categories/java基础学习总结/">java基础学习总结</a>
-                          <span class="badge badge-default badge-pill">3</span>
+                          <span class="badge badge-default badge-pill">4</span>
                       </li>
                     
                       <li class="list-group-item justify-content-between">
@@ -510,6 +521,8 @@ public boolean remove(Object o) {
                       <li><a href="/tags/css/" class="tag-could" data-toggle="tooltip" data-placement="top" title="css">css</a></li>
                     
                       <li><a href="/tags/js/" class="tag-could" data-toggle="tooltip" data-placement="top" title="js">js</a></li>
+                    
+                      <li><a href="/tags/list/" class="tag-could" data-toggle="tooltip" data-placement="top" title="list">list</a></li>
                     
                   
                 </ul>
