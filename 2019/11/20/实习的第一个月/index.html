@@ -20,7 +20,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" , user-scalable="no"">
-  <title>java集合框架Faster J</title>
+  <title>实习的第一个月Faster J</title>
   <link rel="shortcut icon" href="http://puo9w3yis.bkt.clouddn.com/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.png">
   
     
@@ -111,23 +111,17 @@
             </header>
                 
 <header class="blog-post-page-title">
-    <h4>java集合框架</h4>
-    <time datetime="2019-07-29T06:39:41.088Z"><i class="fa fa-clock-o"></i>2019-07-29</time>
+    <h4>实习的第一个月</h4>
+    <time datetime="2019-11-20T11:38:32.000Z"><i class="fa fa-clock-o"></i>2019-11-20</time>
     
     
     <span>
         <i class="fa fa-eye"></i>
-        <span id="/2019/07/29/java集合框架/" class="views views-post" title="java集合框架"></span>
+        <span id="/2019/11/20/实习的第一个月/" class="views views-post" title="实习的第一个月"></span>
     </span>
     
     
     
-	
-        <span><i class="fa fa-folder-o"></i>
-    		
-    	       <a href="/categories/java基础学习总结/" rel="categories" data-toggle="tooltip" data-placement="top" title="Linux">java基础学习总结</a>
-    		
-        </span>
 	
     
 </header>
@@ -135,158 +129,16 @@
     <article class="blog-post-block blog-post-page-content">
         <section>
             
-                <p>java.util包下的集合框架 </p>
-<a id="more"></a>
-
-<h3 id="四大集合接口"><a href="#四大集合接口" class="headerlink" title="四大集合接口"></a><table><tr><td bgcolor="yellow">四大集合接口</td></tr></table></h3><ul>
-<li>Collection  <blockquote>
-<p>Collection 层次结构 中的根接口。Collection 表示一组对象，这些对象也称为 collection 的元素。</p>
+                <blockquote>
+<p>10.18~11.20 已经过去了一个月了 这一个月感觉不是那么的充实  </p>
+<p>反而让我有点丧失了斗志</p>
 </blockquote>
-</li>
-<li>List</li>
-<li>Set</li>
-<li>Map</li>
-</ul>
-<h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><blockquote>
-<p>有序可重复Collection集合 可以拥有多个null元素</p>
-</blockquote>
-<pre><code>常用的方法：
-
-  boolean add(E e)  添加元素到列表的尾部
-  void add(int index, E element)  向指定位置添加元素
-  E get(int index)  返回列表指定位置的元素
-  E remove(int index)  移除指定位置的元素
-</code></pre><p>常用子类：</p>
-<ul>
-<li>ArrayList:<br><font color="#FF0000">遍历集合的3中方法</font><pre><code>List&lt;Integer&gt; L1 = new ArrayList&lt;&gt;();
-L1.add(1);
-L1.add(2);
-L1.add(3);
-L1.add(4);
-//遍历集合：
-//1.for循环
-System.out.println(&quot;----for loop------&quot;);
-for(int i=0;i&lt;L1.size();i++){
-  System.out.print(L1.get(i));
-}
-System.out.println(&quot;-----foreach------&quot;);
-//2.增强型for jdk8++
-for(Integer i : L1){
- System.out.print(i);
-}
-System.out.println(&quot;------Iterator-----&quot;);
-//3.Iterator
-Iterator&lt;Integer&gt; it = L1.iterator();
-while(it.hasNext()){
-  System.out.print(it.next());
-}
-public ArrayList() {
-  this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
-}
-transient Object[] elementData; // non-private to simplify nested class access
-private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};</code></pre></li>
-</ul>
-<p>由构造方法中的两个参数可以看出，ArrayList底层是由数组实现的，默认是创建一个长度为0的Objcet数组<br><font color="#A52A2A">优点：查找数据方便，可以通过索引进行访问<br>缺点：操作数据麻烦，当要删除某个元素时，要移动它之后的所有元素</font></p>
-<ul>
-<li>LinkedList</li>
-</ul>
-<pre><code>
-
-里面的变量
-transient Node&lt;E&gt; first;
-transient Node&lt;E&gt; last;
-transient:关键字 当序列化的时候忽略这个关键字修饰的变量 不能放在方法体类
-只能用来修饰成员变量或者类变量
-
-private static class Node&lt;E&gt; {
-E item;
-Node&lt;E&gt; next;
-Node&lt;E&gt; prev;
-
-Node(Node&lt;E&gt; prev, E element, Node&lt;E&gt; next) {
-        this.item = element;
-        this.next = next;
-        this.prev = prev;
-    }
-}
-</code></pre><p>LinkedList是对链表进行操作，底层是链表实现，还实现了Deque 可以进行栈对应的操作</p>
-<hr>
-<pre><code class="pop()">push(E) 入栈，采用的是头插法
-poll()  将栈顶元素出栈但不移除元素
-↑ 方法是ArrayList没有的方法</code></pre>
-<p><font color="#A52A2A">优点：插入，删除元素快，只需要删除对应的结点，不需要移动元素<br>缺点：查找元素慢，因为需要从头结点遍历  可以采用双向链表优化</font></p>
-<hr>
-<h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><blockquote>
-<p>无序不可能重复的Collection集合 最多只能拥有一个null 元素<br>底层是Map存放key,value键值对，因为Key不能重复，所以set不能存放重复的元素</p>
-</blockquote>
-<p>常用方法(Set接口中的方法):</p>
-<pre><code class="add(E">contains(Object o) : 查询是否集合中是否包含该元素
-isEmpty() : 为空返回true
-iterator() : Set集合的迭代器
-remove(Object o) : 移除某个元素
-size() : 集合的大小</code></pre>
-<p><font color="#FF0000">常用子类</font></p>
-<ul>
-<li>HashSet<blockquote>
-<p>由哈希表（实际上是一个 HashMap 实例）支持。它不保证 set 的迭代顺序；特别是它不保证该顺序恒久不变。此类允许使用 null 元素。<strong>线程不同步</strong></p>
-</blockquote>
-</li>
-</ul>
-<p>剖析源码：</p>
-<pre><code class="private">private static final Object PRESENT = new Object();
-
-
-public HashSet() {
-    map = new HashMap&lt;&gt;();
-}
-
-
-public boolean add(E e) {
-    return map.put(e, PRESENT)==null;
-}
-
-public boolean remove(Object o) {
-     return map.remove(o)==PRESENT;
-}
-
-</code></pre>
-<font color="#000FFF">
-总结：
-1.hashSet底层实现是 hashmap  对set的一切操作实质都是在操作map 
-2.之所以set存放的元素是不重复的，从源码可以知道 当向set中add一个元素时，是在向map中put一个键值对，key 就是参数 e  value 是一个固定的object对象 所有的value都是一个值。而map中 key又是唯一的，当有相同的key 被put的时候，会覆盖掉之前的key 。所以当add一个已经存在的元素时，map.put()返回的是旧的value值。
-3.remove同理。因为value值都是固定的Object 且是final修饰的，不会增加额外的内存开销。
-</font>
-
-<ul>
-<li>LinkedHashSet<blockquote>
-<p>是HashSet的子类，但是维护了一个双向链表，所以add remove等操作更高效</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<ul>
-<li>TreeSet<blockquote>
-<p>基于 TreeMap 的 NavigableSet 实现。使用元素的自然顺序对元素进行排序，或者根据创建 set 时提供的 Comparator 进行排序，具体取决于使用的构造方法。 </p>
-</blockquote>
-</li>
-</ul>
-<h2 id="集合框架底层数据结构总结"><a href="#集合框架底层数据结构总结" class="headerlink" title="集合框架底层数据结构总结"></a>集合框架底层数据结构总结</h2><h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><h3 id="1-List"><a href="#1-List" class="headerlink" title="1.List"></a>1.List</h3><ul>
-<li><strong>ArrayList :</strong>  Object数组</li>
-<li><strong>Vector :</strong>  Object数组</li>
-<li><strong>LinkedList :</strong>  1.6之前是双向循环链表 1.7之后取消了循环 变成了双向链表</li>
-</ul>
-<h3 id="2-Set"><a href="#2-Set" class="headerlink" title="2.Set"></a>2.Set</h3><ul>
-<li>*<em>HashSet（无序，唯一）: *</em>  基于hashMap来实现的，底层用hashMap来保存元素</li>
-<li>*<em>LinkedHashSet : *</em> LinkedHashSet 继承于HashSet，并且其内部通过LinkedHashMap来实现。<br>有点类似于LinkedHashMap其内部是基于HashMap实现一样，不过还是有点儿区别。</li>
-<li><strong>TreeSet（有序，唯一）：</strong> 红黑树（自平衡的排序二叉树）</li>
-</ul>
-<h3 id="3-Map"><a href="#3-Map" class="headerlink" title="3.Map"></a>3.Map</h3><ul>
-<li><strong>HashMap：</strong> JDK1.8之前HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突<br>而存在的（“拉链发”解决冲突）。JDK1.8以后再解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）<br>时，将链表转化为红黑树，以减少搜索时间。</li>
-<li><strong>LinkedHashMap：</strong> LinkedHashMap继承来自HashMap，所以它的底层仍然是基于拉链式散列结构即由数组和链表<br>或红黑树组成。另外，LinkedHashMap在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入<br>顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑。详细可以查看<br><a href="https://www.imooc.com/article/22931" target="_blank" rel="noopener">《LinkedHashMap 源码详细分析（JDK1.8）》</a></li>
-<li><strong>Hashtable：</strong> 数组+链表组成的，数组是Hashtable的主体，链表则是主要为了解决哈希冲突而存在的</li>
-<li><strong>TreeMap：</strong> 红黑树（自平衡的排序二叉树）</li>
-</ul>
-<h3 id="如何选用集合？"><a href="#如何选用集合？" class="headerlink" title="如何选用集合？"></a>如何选用集合？</h3><p>主要根据集合的特点来选用，比如我们需要根据键值获取到元素值时就选用Map接口下的集合，需要排序时选择<br>TreeMap，不需要排序时就选择HashMap，需要保证线程安全就选用ConcurrentHashMap.当我们只需要存放元素时，就<br>选择实现Collection接口的集合，需要保证元素唯一时选择实现Set接口的集合比如TreeSet或HashSet，不需要就选择实<br>现List接口的比如ArrayList或LinkedList，然后再根据实现这些接口的集合特点来选用</p>
+<p>&emsp;&emsp;回想起面试完这家公司过后，不知道为什么就把宝全压在它上面了。感觉就像是找到一个非常牛逼的公司（例如BAT这样的大厂）。每天等它的结果也是让人寝食难安，好在一周后很高兴的收到了offer。那几天每接到一个电话就渴望是这家公司打来的，那天总算是接到了HR打来的电话。没说很多，就恭喜我，让我准备到公司报道需要的一些东西。 一听到转正工资是8k，仿佛就已经看到了领第一个月薪水的时候那些好吃的、好玩的、都在我的面前。在等待入职的这一段时间，很积极的去体检、办卡、拿三方。</p>
+<p>&emsp;&emsp;10月17号晚上很早就睡了，但是想着第二天要到一个新环境，接触很多新鲜的人和事物就非常的激动。所以本来是11点就睡的，结果到了一点两点还是没睡着。不过第二天还是按时起床了，我是第一个到公司的实习生。看到群里面那些被挤到地铁外的一起实习的人，哦，也没什么想说的。到了公司，也没人接待啥的，我就自己一个人坐在等待区，拿着她送我的保温杯 吨吨吨 <img src="/2019/11/20/实习的第一个月/ddd.png" alt="img">心里很大的落差感，跟我想象的完全不一样啊。然后就坐到一个会议室里面听课，这一听就是三天。比在学校上课的时间安排都还紧张，简直堪比高中。但是想着三天过后就能去部门里面学习、工作了，还是有点点小激动的。人事说的是每个实习生的导师都会给拟定一份实习期的计划。我当时满怀期待的等待着我的计划表，谁知道，就只是一些粗略的东西（反正没什么用）。然后这一周就结束了，迎来了第一个周末，感觉还行，就是上班的时候比较无聊，周围的人也是不爱说话。我也没事做，就更无聊。</p>
+<p>&emsp;&emsp;后面的几周导师也给我安排了任务，但是都是一些学习任务（Angular JS 、Semantic、SpringBoot 这些)，然后让我写了一个demo 。这个demo一共写了三周，就在上周才算完成。第一周的时候，因为写这个要用到HttpClient（不会） 就学呗，然后这一周就用HttpClient写了一个能在控制端完成的demo。第二周的时候让我改进这个，需要把这个程序能够在网页上跑起来，我写了两天，然后划水了几天。第三周，也就是上周的时候，让我把这个demo的页面改一下，因为太丑了，改成用公司里面的框架来完成，也折腾了一周，这周一还加了一些功能，测试完成，就交给导师了，后面会提供给测试人员用。</p>
+<p>&emsp;&emsp;因为公司有一个新的项目，是别人需要我们调用他们的WebService和我们提供WebService给他们，所以我就去学webService了，学了两天，基本使用已经会了，但是还没给我具体的需求，本来说今天给我看需求的，可能因为太忙了，就忘记了。所以今天又是划水的一天（跟着教程敲了一上午的py，下午又在边划水边看想我的毕业设计）</p>
+<p>&emsp;&emsp;总的来说这一个月，做事的时间太少了，还有就是被游戏耽误了，有两个周末都泡在网吧。也是我自己的问题，不会自己去找事做。大多数时间是在做一些与公司项目无关 的事，比如学python。也没学到什么东西，倒是养成了早睡早起的习惯（不对，是被逼的），只希望接下来的一个月能够融入到公司里面去，积极的投入工作、学习中。</p>
+<p>​    <img src="/2019/11/20/实习的第一个月/%E5%A5%A5%E5%88%A9%E7%BB%99.jpeg" alt="img"></p>
 
             
         </section>
@@ -294,9 +146,7 @@ public boolean remove(Object o) {
         
 			
 				
-			<a href="/tags/java/" rel="tag" data-toggle="tooltip" data-placement="top" title="Linux">java</a>
-				
-			<a href="/tags/集合/" rel="tag" data-toggle="tooltip" data-placement="top" title="Linux">集合</a>
+			<a href="/tags/随笔/" rel="tag" data-toggle="tooltip" data-placement="top" title="Linux">随笔</a>
 				
 			
 		
@@ -306,12 +156,10 @@ public boolean remove(Object o) {
     	
     	
 		
-			<a href="/2019/07/29/java面试题总结/" class="blog-post-page-readmore-prev" data-toggle="tooltip" data-placement="top" title="java面试题汇总">上一篇</a>
-		
 
 		
 		
-			<a href="/2019/07/29/hello-world/" class="blog-post-page-readmore-next" data-toggle="tooltip" data-placement="top" title="hello world">下一篇</a>
+			<a href="/2019/09/26/平凡的秋招/" class="blog-post-page-readmore-next" data-toggle="tooltip" data-placement="top" title="平凡的秋招">下一篇</a>
 		
 
         <div style="clear: both;"></div>
@@ -414,7 +262,7 @@ public boolean remove(Object o) {
                 return out;
             }
             // 生成
-            var qrcode= $('.post-qrcode-content-canvas').qrcode({width: 150,height: 150,text: toUtf8("https://www.fanjie.xyz/2019/07/29/java集合框架/")}).hide();
+            var qrcode= $('.post-qrcode-content-canvas').qrcode({width: 150,height: 150,text: toUtf8("https://www.fanjie.xyz/2019/11/20/实习的第一个月/")}).hide();
             var canvas=qrcode.find('canvas').get(0);
             $('.post-qrcode-content-img').attr('src',canvas.toDataURL('image/jpg'));
         </script>
